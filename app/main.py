@@ -10,6 +10,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+
 def get_db():
     db = SessionLocal()
     try:
@@ -23,5 +24,6 @@ def create_todo(todo: schemas.TodoCreate, db: Session = Depends(get_db)):
     return crud.create_todo(db, todo=todo)
 
 
-
 @app.post("/create_user", response_model=schemas.User)
+def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    return crud.create_user(db, user=user)
