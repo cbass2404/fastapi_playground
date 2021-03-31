@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
+from app.authentication import Hash
 
 
 def create_todo(db: Session, todo: schemas.TodoBase):
@@ -11,7 +12,7 @@ def create_todo(db: Session, todo: schemas.TodoBase):
 
 
 def create_user(db: Session, user: schemas.UserCreate):
-    new_user = models.User()
+    new_user = models.User(username=user.username, hashed_password=Hash.hash_password(user.password))
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
