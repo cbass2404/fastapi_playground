@@ -10,3 +10,6 @@ class Todo(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     complete = Column(Boolean, default=False)
+
+
+

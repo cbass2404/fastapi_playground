@@ -19,7 +19,7 @@ def get_db():
 
 
 @app.post("/create_todo", response_model=schemas.Todo)
-def create_todo(todo: schemas.TodoBase, db: Session = Depends(get_db)):
+def create_todo(todo: schemas.TodoCreate, db: Session = Depends(get_db)):
     return crud.create_todo(db, todo=todo)
 
 
