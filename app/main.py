@@ -24,6 +24,4 @@ def create_todo(todo: schemas.TodoCreate, db: Session = Depends(get_db)):
 
 
 
-@app.get("/{todo_id}")
-def hello(todo_id: int, name: Optional[str] = None, email: Optional[str] = Query(None, max_length=10, deprecated=True)):
-    return {"todo_id": todo_id, "name": name, "email": email}
+@app.post("/create_user", response_model=schemas.User)
