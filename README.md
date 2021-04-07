@@ -43,6 +43,12 @@ $ venv\Scripts\activate
 (venv) $ pip install -r requirements.txt
 ```
 
+**Update Package List:**
+
+```
+(venv) $ pip freeze > requirements.txt
+```
+
 ## Run The Uvicorn Server
 
 > Make sure you are inside the `code_experiment_playground` folder when you run this command.
