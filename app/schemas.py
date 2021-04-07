@@ -1,4 +1,6 @@
+from typing import List
 from pydantic import BaseModel
+
 
 class TodoBase(BaseModel):
     title: str
@@ -6,20 +8,22 @@ class TodoBase(BaseModel):
 
 
 class TodoCreate(TodoBase):
-    pass
+    owner_id: int
 
     class Config:
         schema_extra = {
             "example": {
                 "title": "Buy Milk",
-                "complete": False
+                "complete": False,
+                "owner_id": 1
             }
         }
 
 
 class Todo(TodoBase):
     id: int
-    
+    owner_id: int
+
     class Config:
         orm_mode = True
 
@@ -34,6 +38,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
+    todos: List[Todo] = []
 
     class Config:
         orm_mode = True
