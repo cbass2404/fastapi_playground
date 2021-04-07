@@ -30,7 +30,7 @@ $ source venv/bin/activate
 (venv) $ _
 
 # Windows
-$ Set-ExecutionPolicy Unrestricted -scope process
+$ Set-ExecutionPolicy Unrestricted -scope process // if error is thrown
 $ venv\Scripts\activate
 (venv) $ _
 ```

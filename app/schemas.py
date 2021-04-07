@@ -8,14 +8,13 @@ class TodoBase(BaseModel):
 
 
 class TodoCreate(TodoBase):
-    owner_id: int
+    pass
 
     class Config:
         schema_extra = {
             "example": {
                 "title": "Buy Milk",
                 "complete": False,
-                "owner_id": 1
             }
         }
 
