@@ -7,7 +7,6 @@ from sqlalchemy.orm.session import Session
 from app.database import get_db
 from app import schemas, crud
 
-
 pwd_cxt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -24,12 +23,12 @@ class Hash():
         return pwd_cxt.verify(plain_password, hashed_password)
 
 
-def get_current_user(data: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+def get_current_user(data: str = Depends(oauth2_scheme),
+                     db: Session = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"}
-    )
+        headers={"WWW-Authenticate": "Bearer"})
     token_data = verify_token(data, credentials_exception)
     db_user = crud.get_user(db, user_id=token_data.id)
     return db_user
