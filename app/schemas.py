@@ -1,6 +1,8 @@
 from typing import List
 from pydantic import BaseModel
 
+# TO DO
+
 
 class TodoBase(BaseModel):
     title: str
@@ -27,6 +29,9 @@ class Todo(TodoBase):
         orm_mode = True
 
 
+# USER
+
+
 class UserBase(BaseModel):
     username: str
 
@@ -41,6 +46,9 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+
+# AUTHENTICATION
 
 
 class Token(BaseModel):
