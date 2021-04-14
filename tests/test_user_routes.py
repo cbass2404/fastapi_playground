@@ -1,5 +1,15 @@
 import requests
 
+test_user = {
+    'username': 'testUser',
+    'password': 'aI3kdl0s',
+    'id': '',
+    'access_token': '',
+    'token_type': 'bearer'
+}
+
+# get user
+
 
 def test_get_user():
     # Arrange
@@ -23,5 +33,15 @@ def test_get_user_raises_not_found():
     body = response.json()
 
     # Assert
+    assert response.status_code == 400
+    assert 'User Not Found' in body['detail']
+
+
+def test_create_user():
+    url = 'http://localhost:8000/create_user'
+
+    response = requests.get(url)
+    body = response.json()
+
     assert response.status_code == 400
     assert 'User Not Found' in body['detail']
